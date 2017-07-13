@@ -1,0 +1,41 @@
+// Replace Every Nth.cpp
+//
+
+#include "stdafx.h"
+#include <string.h>
+#include <stdlib.h>
+
+char* replaceNth(const char* text, int n, char oldValue, char newValue)
+{
+
+	int i = 0, length = 0, count = 0;
+	char *newStr;
+
+	if (n < 1) {
+		length = 0;
+	} else {
+		newStr = (char*)malloc((size_t)strlen(text) + 1);
+		strcpy(newStr, text);
+		length = strlen(text);
+	}
+
+	for (i = 0; i < length; i++) {
+		printf("newStr[i]: %c\n", newStr[i]);
+		if (newStr[i] == oldValue) {
+			count++;
+			printf("found letter %c. i: %d   count: %d\n", newStr[i], i, count);
+			if (count % n == 0) {
+				newStr[i] = newValue;
+				printf("found. i: %d   count: %d\n", i, count);
+			}
+		} // end of outer if
+	} // end of for loop
+	printf("newStr: %s\n", newStr);
+	return newStr;
+}
+
+int main()
+{
+	replaceNth("Vader said: No, I am your father!", 2, 'a', 'o');
+	return 0;
+}
